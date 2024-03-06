@@ -4,10 +4,7 @@ import { buildTaquinBoard, isNeighborToZero, isSolved } from "./utils/utils";
 export default function App() {
   const [width] = useState(4);
   const [height] = useState(4);
-  // const [board, setBoard] = useState(buildTaquinBoard(width, height));
-  const [board, setBoard] = useState([
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 0, 15,
-  ]);
+  const [board, setBoard] = useState(buildTaquinBoard(width, height));
   const zeroRef = useRef<HTMLButtonElement>(null);
 
   const rows = useMemo(() => {
@@ -61,7 +58,7 @@ export default function App() {
               key={cellIndex}
               type="button"
               onClick={() => handleClick(cell)}
-              className={`flex h-20 w-20 cursor-pointer items-center justify-center text-2xl font-bold text-white text-opacity-50 ${cell !== 0 ? "hover:text-shadow-lg rounded border-2 border-solid border-slate-200 border-opacity-20  bg-white bg-opacity-10 shadow-lg backdrop-blur-md transition-shadow hover:border-rose-300 hover:border-opacity-40 hover:text-rose-200 hover:shadow-rose-600/15" : ""}`}
+              className={`flex h-20 w-20 cursor-pointer items-center justify-center text-2xl font-bold text-white text-opacity-50 ${cell !== 0 ? "rounded border-2 border-solid border-slate-200 border-opacity-20 bg-white  bg-opacity-10 shadow-lg backdrop-blur-md transition-shadow hover:border-rose-300 hover:border-opacity-40 hover:text-rose-200 hover:shadow-rose-600/15 hover:text-shadow-lg" : ""}`}
             >
               {cell !== 0 && cell}
             </button>
