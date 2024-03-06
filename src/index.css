@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  background-color: black;
+  background-image: url("./bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes move-left {
+  0% {
+    transform: translateX(-88px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes move-right {
+  0% {
+    transform: translateX(88px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes move-up {
+  0% {
+    transform: translateY(-88px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes move-down {
+  0% {
+    transform: translateY(88px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
