@@ -25,12 +25,14 @@ export function isSolvable(board: number[]) {
 
 export function buildTaquinBoard(width: number, height: number): number[] {
   const board: number[] = [];
-  for (let i = 0; i < width * height; i++) {
+  for (let i = 1; i < width * height; i++) {
     board.push(i);
   }
   let shuffled = shuffle(board);
+  shuffled.push(0);
   while (!isSolvable(shuffled)) {
     shuffled = shuffle(board);
+    shuffled.push(0);
   }
   return shuffled;
 }
