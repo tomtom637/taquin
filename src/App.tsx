@@ -1,22 +1,29 @@
 import { useState, useMemo, useRef } from "react";
+
+// UTILS
 import { buildTaquinBoard, isNeighborToZero, isSolved } from "./utils/utils";
 
+// COMPONENTS
+import Menu from "./components/Menu";
+
 export default function App() {
-  const [width] = useState(4);
-  const [height] = useState(4);
-  const [board, setBoard] = useState(buildTaquinBoard(width, height));
+  const [size, setSize] = useState({
+    width: 4,
+    height: 4,
+  });
+  const [board, setBoard] = useState(buildTaquinBoard(size.width, size.height));
   const zeroRef = useRef<HTMLButtonElement>(null);
 
   const rows = useMemo(() => {
     const rows = [];
-    for (let i = 0; i < height; i++) {
-      rows.push(board.slice(i * width, (i + 1) * width));
+    for (let i = 0; i < size.height; i++) {
+      rows.push(board.slice(i * size.width, (i + 1) * size.width));
     }
     return rows;
-  }, [board, width, height]);
+  }, [board, size]);
 
   const handleClick = (cell: number) => {
-    if (!isNeighborToZero(board, width, cell)) return;
+    if (!isNeighborToZero(board, size.width, cell)) return;
     const newBoard = [...board];
     const zeroIndex = newBoard.indexOf(0);
     const cellIndex = newBoard.indexOf(cell);
@@ -27,7 +34,7 @@ export default function App() {
     if (isSolved(newBoard)) {
       setTimeout(() => {
         alert("You won!");
-        setBoard(buildTaquinBoard(width, height));
+        setBoard(buildTaquinBoard(size.width, size.height));
       }, 100);
     }
 
@@ -49,22 +56,31 @@ export default function App() {
   };
 
   return (
-    <div className="container mx-auto flex h-[100dvh] flex-col items-center justify-center gap-2 px-4">
-      {rows.map((row, rowIndex) => (
-        <div key={rowIndex} className="flex  gap-2">
-          {row.map((cell, cellIndex) => (
-            <button
-              ref={cell === 0 ? zeroRef : undefined}
-              key={cellIndex}
-              type="button"
-              onClick={() => handleClick(cell)}
-              className={`flex h-20 w-20 cursor-pointer items-center justify-center text-2xl font-bold text-white text-opacity-50 ${cell !== 0 ? "rounded border-2 border-solid border-slate-200 border-opacity-20 bg-white  bg-opacity-10 shadow-lg backdrop-blur-md transition-shadow hover:border-rose-300 hover:border-opacity-40 hover:text-rose-200 hover:shadow-rose-600/15 hover:text-shadow-lg" : ""}`}
-            >
-              {cell !== 0 && cell}
-            </button>
-          ))}
-        </div>
-      ))}
+    <div className="container mx-auto flex h-[100dvh]">
+      <Menu
+        {...{
+          size,
+          setSize,
+          setBoard,
+        }}
+      />
+      <div className="container mx-auto flex flex-col items-center justify-center gap-2 px-4">
+        {rows.map((row, rowIndex) => (
+          <div key={rowIndex} className="flex  gap-2">
+            {row.map((cell, cellIndex) => (
+              <button
+                ref={cell === 0 ? zeroRef : undefined}
+                key={cellIndex}
+                type="button"
+                onClick={() => handleClick(cell)}
+                className={`flex h-20 w-20 cursor-pointer items-center justify-center text-2xl font-bold text-white text-opacity-50 ${cell !== 0 ? "rounded border-2 border-solid border-slate-200 border-opacity-20 bg-white  bg-opacity-10 shadow-lg backdrop-blur-md transition-shadow hover:border-rose-300 hover:border-opacity-40 hover:text-rose-200 hover:shadow-rose-600/15 hover:text-shadow-lg" : ""}`}
+              >
+                {cell !== 0 && cell}
+              </button>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
