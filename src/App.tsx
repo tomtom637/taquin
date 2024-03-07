@@ -3,8 +3,12 @@ import { useState, useMemo, useRef } from "react";
 // UTILS
 import { buildTaquinBoard, isNeighborToZero, isSolved } from "./utils/utils";
 
+// IMAGES
+import winImage from "@/assets/win.png";
+
 // COMPONENTS
 import Menu from "./components/Menu";
+import { Button } from "./components/ui/button";
 
 export default function App() {
   const [size, setSize] = useState({
@@ -12,6 +16,7 @@ export default function App() {
     height: 4,
   });
   const [board, setBoard] = useState(buildTaquinBoard(size.width, size.height));
+  const [hasWon, setHasWon] = useState(false);
   const zeroRef = useRef<HTMLButtonElement>(null);
 
   const rows = useMemo(() => {
@@ -32,10 +37,7 @@ export default function App() {
     setBoard(newBoard);
 
     if (isSolved(newBoard)) {
-      setTimeout(() => {
-        alert("You won!");
-        setBoard(buildTaquinBoard(size.width, size.height));
-      }, 100);
+      setHasWon(true);
     }
 
     if (!zeroRef.current) return;
@@ -64,7 +66,9 @@ export default function App() {
           setBoard,
         }}
       />
-      <div className="container mx-auto flex flex-col items-center justify-center gap-2 px-4">
+      <div
+        className={`container mx-auto flex flex-col items-center justify-center gap-2 px-4 transition-opacity ${hasWon ? "opacity-0" : ""}`}
+      >
         {rows.map((row, rowIndex) => (
           <div key={rowIndex} className="flex  gap-2">
             {row.map((cell, cellIndex) => (
@@ -81,6 +85,28 @@ export default function App() {
           </div>
         ))}
       </div>
+      {hasWon && (
+        <div className="fixed left-1/2 top-1/2 flex h-full -translate-x-1/2 -translate-y-1/2 animate-[appear_500ms_ease-in-out] flex-col items-center justify-center">
+          <p className="mb-4 animate-pulse whitespace-nowrap rounded-md bg-rose-500 px-4 py-2 text-5xl font-semibold tracking-wide">
+            YOU WIN
+          </p>
+          <img
+            className="pb-10"
+            src={winImage}
+            alt="win"
+            width={300}
+            height={300}
+          />
+          <Button
+            onClick={() => {
+              setHasWon(false);
+              setBoard(buildTaquinBoard(size.width, size.height));
+            }}
+          >
+            Play Again
+          </Button>
+        </div>
+      )}
     </div>
   );
 }
