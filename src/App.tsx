@@ -11,10 +11,14 @@ import Menu from "./components/Menu";
 import { Button } from "./components/ui/button";
 
 export default function App() {
-  const [size, setSize] = useState({
-    width: 4,
-    height: 4,
-  });
+  const [size, setSize] = useState(
+    localStorage.getItem("taquin-size")
+      ? JSON.parse(localStorage.getItem("taquin-size") as string)
+      : {
+          width: 4,
+          height: 4,
+        },
+  );
   const [board, setBoard] = useState(buildTaquinBoard(size.width, size.height));
   const [hasWon, setHasWon] = useState(false);
   const zeroRef = useRef<HTMLButtonElement>(null);

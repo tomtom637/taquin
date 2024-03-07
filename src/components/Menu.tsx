@@ -34,6 +34,13 @@ export default function Menu({ size, setSize, setBoard }: MenuProps) {
         direction === "height" ? value[0] : size.height,
       ),
     );
+    localStorage.setItem(
+      "taquin-size",
+      JSON.stringify({
+        width: direction === "width" ? value[0] : size.width,
+        height: direction === "height" ? value[0] : size.height,
+      }),
+    );
   };
   const handleClickReset = () => {
     setBoard(buildTaquinBoard(size.width, size.height));
