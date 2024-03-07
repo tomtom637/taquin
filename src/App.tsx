@@ -77,7 +77,7 @@ export default function App() {
                 key={cellIndex}
                 type="button"
                 onClick={() => handleClick(cell)}
-                className={`flex h-20 w-20 cursor-pointer items-center justify-center text-2xl font-bold text-white text-opacity-50 ${cell !== 0 ? "rounded border-2 border-solid border-slate-200 border-opacity-20 bg-white  bg-opacity-10 shadow-lg backdrop-blur-md transition-shadow hover:border-rose-300 hover:border-opacity-40 hover:text-rose-200 hover:shadow-rose-600/15 hover:text-shadow-lg" : ""}`}
+                className={`flex h-20 w-20 cursor-pointer items-center justify-center text-2xl font-bold text-white text-opacity-50 ${cell !== 0 ? "hover:text-shadow-lg rounded border-2 border-solid border-slate-200 border-opacity-20  bg-white bg-opacity-10 shadow-lg backdrop-blur-md transition-shadow hover:border-rose-300 hover:border-opacity-40 hover:text-rose-200 hover:shadow-rose-600/15" : ""}`}
               >
                 {cell !== 0 && cell}
               </button>
@@ -87,7 +87,7 @@ export default function App() {
       </div>
       {hasWon && (
         <div className="fixed left-1/2 top-1/2 flex h-full -translate-x-1/2 -translate-y-1/2 animate-[appear_500ms_ease-in-out] flex-col items-center justify-center">
-          <p className="mb-4 animate-pulse whitespace-nowrap rounded-md bg-rose-500 px-4 py-2 text-5xl font-semibold tracking-wide">
+          <p className="mb-4 whitespace-nowrap rounded-md bg-black px-4 py-2 text-5xl font-semibold tracking-wide">
             YOU WIN
           </p>
           <img
