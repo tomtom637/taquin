@@ -13,12 +13,26 @@ export function shuffle<T>(array: T[]) {
   return arrayCopy;
 }
 
+export function isSolvable(board: number[]) {
+  let inversionCount = 0;
+  for (let i = 0; i < board.length - 1; i++) {
+    for (let j = i + 1; j < board.length; j++) {
+      if (board[i] > board[j] && board[i] !== 0 && board[j] !== 0) inversionCount++;
+    }
+  }
+  return inversionCount % 2 === 0;
+}
+
 export function buildTaquinBoard(width: number, height: number): number[] {
   const board: number[] = [];
   for (let i = 0; i < width * height; i++) {
     board.push(i);
   }
-  return shuffle(board);
+  let shuffled = shuffle(board);
+  while (!isSolvable(shuffled)) {
+    shuffled = shuffle(board);
+  }
+  return shuffled;
 }
 
 export function isNeighborToZero(board: number[], boardWidth: number, value: number) {
