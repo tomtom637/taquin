@@ -23,28 +23,31 @@ type MenuProps = {
 };
 
 export default function Menu({ size, setSize, setBoard }: MenuProps) {
+  const width = size.width;
+  const height = size.height;
+
   const handleSizeChange = (value: number[], direction: "width" | "height") => {
-    setSize((prev) => ({
-      ...prev,
-      [direction]: value[0],
-    }));
-    setBoard(
-      buildTaquinBoard(
-        direction === "width" ? value[0] : size.width,
-        direction === "height" ? value[0] : size.height,
-      ),
-    );
+    const val = value[0];
+    const w = direction === "width" ? val : size.width;
+    const h = direction === "height" ? val : size.height;
+    setSize((prev) => ({ ...prev, [direction]: val }));
+    setBoard(buildTaquinBoard(w, h));
     localStorage.setItem(
       "taquin-size",
-      JSON.stringify({
-        width: direction === "width" ? value[0] : size.width,
-        height: direction === "height" ? value[0] : size.height,
-      }),
+      JSON.stringify({ width: w, height: h }),
     );
   };
-  const handleClickReset = () => {
-    setBoard(buildTaquinBoard(size.width, size.height));
+  const handleClickNewGame = () => {
+    setBoard(buildTaquinBoard(width, height));
   };
+
+  const handleClickReset = () => {
+    const settings = { width: 4, height: 4 };
+    setSize(settings);
+    setBoard(buildTaquinBoard(4, 4));
+    localStorage.setItem("taquin-size", JSON.stringify(settings));
+  };
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -59,27 +62,40 @@ export default function Menu({ size, setSize, setBoard }: MenuProps) {
       </PopoverTrigger>
       <PopoverContent align="start" className="w-96 opacity-70">
         <div className="flex flex-col gap-2 py-2">
-          <Button onClick={handleClickReset}>Reset</Button>
+          <Button
+            className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-2xl text-white shadow-md shadow-indigo-800 transition duration-150 ease-out hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 hover:ease-in"
+            onClick={handleClickNewGame}
+          >
+            New Game
+          </Button>
         </div>
         <div className="flex flex-col gap-2 py-2">
           <p>Set the width</p>
           <Slider
-            value={[size.width]}
+            value={[width]}
             max={4}
             min={2}
-            step={1}
             onValueChange={(e) => handleSizeChange(e, "width")}
           />
         </div>
         <div className="flex flex-col gap-2 py-2">
           <p>Set the height</p>
           <Slider
-            value={[size.height]}
+            value={[height]}
             max={6}
             min={2}
-            step={1}
             onValueChange={(e) => handleSizeChange(e, "height")}
           />
+        </div>
+        <div className="my-2 flex flex-col gap-2 py-2">
+          <Button
+            className="border-2 border-slate-500 bg-slate-800 hover:bg-slate-700"
+            onClick={handleClickReset}
+          >
+            <pre className="animate-bounce border-b-2 border-yellow-400 text-xs uppercase tracking-wide text-white">
+              Reset to Factory
+            </pre>
+          </Button>
         </div>
       </PopoverContent>
     </Popover>
