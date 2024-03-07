@@ -67,6 +67,7 @@ export default function App() {
           size,
           setSize,
           setBoard,
+          setHasWon,
         }}
       />
       <div

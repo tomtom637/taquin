@@ -20,9 +20,15 @@ type MenuProps = {
     }>
   >;
   setBoard: React.Dispatch<React.SetStateAction<number[]>>;
+  setHasWon: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function Menu({ size, setSize, setBoard }: MenuProps) {
+export default function Menu({
+  size,
+  setSize,
+  setBoard,
+  setHasWon,
+}: MenuProps) {
   const width = size.width;
   const height = size.height;
 
@@ -36,9 +42,11 @@ export default function Menu({ size, setSize, setBoard }: MenuProps) {
       "taquin-size",
       JSON.stringify({ width: w, height: h }),
     );
+    setHasWon(false);
   };
   const handleClickNewGame = () => {
     setBoard(buildTaquinBoard(width, height));
+    setHasWon(false);
   };
 
   const handleClickReset = () => {
@@ -46,6 +54,7 @@ export default function Menu({ size, setSize, setBoard }: MenuProps) {
     setSize(settings);
     setBoard(buildTaquinBoard(4, 4));
     localStorage.setItem("taquin-size", JSON.stringify(settings));
+    setHasWon(false);
   };
 
   return (
