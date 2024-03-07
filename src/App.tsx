@@ -10,14 +10,13 @@ import winImage from "@/assets/win.png";
 import Menu from "./components/Menu";
 import { Button } from "./components/ui/button";
 
+const defaultSize = { width: 4, height: 4 };
+
 export default function App() {
   const [size, setSize] = useState(
     localStorage.getItem("taquin-size")
       ? JSON.parse(localStorage.getItem("taquin-size") as string)
-      : {
-          width: 4,
-          height: 4,
-        },
+      : defaultSize,
   );
   const [board, setBoard] = useState(buildTaquinBoard(size.width, size.height));
   const [hasWon, setHasWon] = useState(false);
@@ -91,24 +90,28 @@ export default function App() {
       </div>
       {hasWon && (
         <div className="fixed left-1/2 top-1/2 flex h-full -translate-x-1/2 -translate-y-1/2 animate-[appear_500ms_ease-in-out] flex-col items-center justify-center">
-          <p className="mb-4 whitespace-nowrap rounded-md bg-black px-4 py-2 text-5xl font-semibold tracking-wide">
+          <p className="mb-4 translate-y-7 rotate-3 scale-150 whitespace-nowrap rounded-md bg-black px-4 py-2 text-7xl font-semibold tracking-wide text-yellow-400 animate-in">
             YOU WIN
           </p>
-          <img
-            className="pb-10"
-            src={winImage}
-            alt="win"
-            width={300}
-            height={300}
-          />
-          <Button
-            onClick={() => {
-              setHasWon(false);
-              setBoard(buildTaquinBoard(size.width, size.height));
-            }}
-          >
-            Play Again
-          </Button>
+          <div className="relative z-10 flex flex-wrap items-center justify-center gap-6">
+            <img
+              className="pb-10"
+              src={winImage}
+              alt="win"
+              width={300}
+              height={300}
+            />
+            <Button
+              className="border-2 border-yellow-400 border-b-transparent bg-black p-10 text-xl uppercase tracking-widest text-yellow-400 transition-all hover:border-transparent hover:border-b-yellow-400 hover:bg-slate-900"
+              size="lg"
+              onClick={() => {
+                setHasWon(false);
+                setBoard(buildTaquinBoard(size.width, size.height));
+              }}
+            >
+              Play Again
+            </Button>
+          </div>
         </div>
       )}
     </div>

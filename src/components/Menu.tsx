@@ -52,7 +52,7 @@ export default function Menu({ size, setSize, setBoard }: MenuProps) {
     <Popover>
       <PopoverTrigger asChild>
         <Button
-          className="absolute inset-y-auto left-4 top-4"
+          className="absolute inset-y-auto left-4 top-4 z-10"
           size="icon"
           variant="outline"
         >
@@ -60,7 +60,7 @@ export default function Menu({ size, setSize, setBoard }: MenuProps) {
           <span className="sr-only">Toggle navigation menu</span>
         </Button>
       </PopoverTrigger>
-      <PopoverContent align="start" className="w-96 opacity-70">
+      <PopoverContent align="start" className="w-96 opacity-80">
         <div className="flex flex-col gap-2 py-2">
           <Button
             className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-2xl text-white shadow-md shadow-indigo-800 transition duration-150 ease-out hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 hover:ease-in"
