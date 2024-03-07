@@ -36,9 +36,8 @@ export function isNeighborToZero(board: number[], boardWidth: number, value: num
 }
 
 export function isSolved(board: number[]) {
-  if (board[0] !== 1) return false;
-  for (let i = 0; i < board.length - 2; i++) {
-    if (board[i] > board[i + 1]) return false;
+  for (let i = 0; i < board.length - 1; i++) {
+    if (board[i] !== i + 1) return false;
   }
   return true;
 }
