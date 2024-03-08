@@ -30,7 +30,7 @@ export function buildTaquinBoard(width: number, height: number): number[] {
   }
   let shuffled = shuffle(board);
   shuffled.push(0);
-  while (!isSolvable(shuffled)) {
+  while (!isSolvable(shuffled) && !isSolved(shuffled)) {
     shuffled = shuffle(board);
     shuffled.push(0);
   }

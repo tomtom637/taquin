@@ -91,7 +91,7 @@ export default function App() {
       </div>
       {hasWon && (
         <div className="fixed left-1/2 top-1/2 flex h-full -translate-x-1/2 -translate-y-1/2 animate-[appear_500ms_ease-in-out] flex-col items-center justify-center">
-          <p className="mb-4 translate-y-7 rotate-3 scale-150 whitespace-nowrap rounded-md bg-black px-4 py-2 text-7xl font-semibold tracking-wide text-yellow-400 animate-in">
+          <p className="mb-4 translate-y-7 rotate-3 scale-150 whitespace-nowrap rounded-md bg-black px-4 py-2 text-5xl font-semibold tracking-wide text-yellow-400 animate-in md:text-7xl">
             YOU WIN
           </p>
           <div className="relative z-10 flex flex-wrap items-center justify-center gap-6">
