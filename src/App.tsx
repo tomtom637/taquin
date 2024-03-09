@@ -80,7 +80,7 @@ export default function App() {
                 ref={cell === 0 ? zeroRef : undefined}
                 key={cellIndex}
                 type="button"
-                onClick={() => handleClick(cell)}
+                onPointerDown={() => handleClick(cell)}
                 className={`flex h-20 w-20 cursor-pointer items-center justify-center text-2xl font-bold text-white text-opacity-50 ${cell !== 0 ? "hover:text-shadow-lg rounded border-2 border-solid border-slate-200 border-opacity-20  bg-white bg-opacity-10 shadow-lg backdrop-blur-md transition-shadow hover:border-rose-300 hover:border-opacity-40 hover:text-rose-200 hover:shadow-rose-600/15" : ""}`}
               >
                 {cell !== 0 && cell}
