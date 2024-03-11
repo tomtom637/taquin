@@ -77,6 +77,8 @@
 
 html,
 body {
+  position: relative;
+  z-index: 2;
   background-color: black;
   background-image: url("/bg.jpg");
   background-size: cover;
@@ -85,6 +87,25 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
+  &::before,
+  after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  &::before {
+    background-image: url(/smoke-gas.gif);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: left;
+    mix-blend-mode: screen;
+    opacity: 0.06;
+    z-index: 0;
+  }
 }
 
 @keyframes move-left {
