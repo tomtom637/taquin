@@ -62,7 +62,7 @@ export default function App() {
   };
 
   return (
-    <div className="container mx-auto flex h-[100dvh]">
+    <div className="container mx-auto flex h-[100dvh] bg-[url('./bg.jpg')] bg-cover bg-center bg-no-repeat">
       <Menu
         {...{
           size,
