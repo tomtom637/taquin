@@ -82,7 +82,7 @@ export default function App() {
                 key={cellIndex}
                 type="button"
                 onPointerDown={() => handleClick(cell)}
-                className={`flex h-20 w-20 cursor-pointer select-none items-center justify-center text-2xl font-bold text-white text-opacity-50 ${cell !== 0 ? "hover:text-shadow-lg rounded border-2 border-solid border-slate-200 border-opacity-20  bg-white bg-opacity-10 shadow-lg backdrop-blur-md transition-shadow hover:border-rose-300 hover:border-opacity-40 hover:text-rose-200 hover:shadow-rose-600/15" : ""} ${hasWon && cell !== 0 ? "border-rose-100  bg-opacity-20  hover:border-rose-50" : ""}`}
+                className={`flex h-20 w-20 cursor-pointer select-none items-center justify-center overscroll-none text-2xl font-bold text-white text-opacity-50 ${cell !== 0 ? "hover:text-shadow-lg rounded border-2 border-solid border-slate-200 border-opacity-20  bg-white bg-opacity-10 shadow-lg backdrop-blur-md transition-shadow hover:border-rose-300 hover:border-opacity-40 hover:text-rose-200 hover:shadow-rose-600/15" : ""} ${hasWon && cell !== 0 ? "border-rose-100  bg-opacity-20  hover:border-rose-50" : ""}`}
               >
                 {cell !== 0 && cell}
               </button>
