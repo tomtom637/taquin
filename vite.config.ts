@@ -7,7 +7,15 @@ import path from "path";
 export default defineConfig({
   plugins: [
     react(),
-    VitePWA({ registerType: "autoUpdate" })
+    VitePWA({
+      registerType: "autoUpdate", manifest: {
+        name: 'Taquin',
+        short_name: 'Taquin',
+        description: 'A simple Taquin game',
+        display: 'standalone',
+        theme_color: '#000',
+      }
+    })
   ],
   base: "",
   resolve: {
