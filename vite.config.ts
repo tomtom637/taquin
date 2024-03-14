@@ -11,9 +11,17 @@ export default defineConfig({
       registerType: "autoUpdate", manifest: {
         name: 'Taquin',
         short_name: 'Taquin',
+        scope: "/",
         description: 'A simple Taquin game',
         display: 'standalone',
         theme_color: '#000',
+        icons: [
+          {
+            src: "/vite.svg",
+            sizes: '192x192',
+            type: 'image/png',
+          },
+        ],
       }
     })
   ],
