@@ -25,6 +25,7 @@ export default defineConfig({
       }
     })
   ],
+  base: "/taquin/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
