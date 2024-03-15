@@ -4,7 +4,7 @@ import { useState, useMemo, useRef } from "react";
 import { buildTaquinBoard, isNeighborToZero, isSolved } from "./utils/utils";
 
 // IMAGES
-import bg from "./assets/bg.jpg";
+import bg from "/bg.jpg";
 
 // COMPONENTS
 import Menu from "./components/Menu";
