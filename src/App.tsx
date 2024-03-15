@@ -3,9 +3,6 @@ import { useState, useMemo, useRef } from "react";
 // UTILS
 import { buildTaquinBoard, isNeighborToZero, isSolved } from "./utils/utils";
 
-// IMAGES
-import bg from "/bg.jpg";
-
 // COMPONENTS
 import Menu from "./components/Menu";
 
@@ -65,12 +62,7 @@ export default function App() {
   };
 
   return (
-    <div className="container mx-auto flex h-[100dvh]">
-      <img
-        src={bg}
-        alt="background image displaying blue and pink dunes"
-        className="pointer-events-none absolute inset-0 block min-h-full min-w-full select-none object-cover"
-      />
+    <div className="container mx-auto flex h-[100dvh] bg-[url('/bg.jpg')] bg-cover bg-center bg-no-repeat">
       <Menu
         {...{
           size,
