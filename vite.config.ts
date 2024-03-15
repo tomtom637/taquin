@@ -8,18 +8,25 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: "autoUpdate", manifest: {
-        name: 'Taquin',
-        short_name: 'Taquin',
+      registerType: "autoUpdate",
+      includeAssets: ["vite.svg", "bg.jpg"],
+      manifest: {
+        name: "Taquin",
+        short_name: "Taquin",
         scope: "/",
-        description: 'A simple Taquin game',
-        display: 'standalone',
-        theme_color: '#000',
+        description: "A simple Taquin game",
+        display: "standalone",
+        theme_color: "#000",
         icons: [
           {
-            src: "/vite.svg",
-            sizes: '192x192',
-            type: 'image/png',
+            src: "192x192.png",
+            sizes: "192x192",
+            type: "image/png",
+          },
+          {
+            src: "512x512.png",
+            sizes: "512x512",
+            type: "image/png",
           },
         ],
       }
